@@ -22,3 +22,5 @@ enemy1.attack()
 enemy1.checkLife()
 enemy1.attack()
 enemy1.checkLife()
+
+# Gibberish
