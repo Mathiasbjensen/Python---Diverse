@@ -30,8 +30,6 @@ def callback(sv):
         print("Only numbers you imbecile")
 
 
-
-
 root = Tk()
 sv = StringVar()
 # Calls the callback function which updates the points.
