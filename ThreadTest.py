@@ -16,4 +16,5 @@ y = SomeMessenger(name= "Recieve messages")
 x.start()
 y.start()
 
-# 
+#skod
+#
