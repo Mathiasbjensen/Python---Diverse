@@ -23,8 +23,12 @@ f.write(headers)
 # grabs each product
 
 for container in containers:
-    #brand = container.div.div.a.img["title"]
-    brand = container.div.div.a.image["title"]
+# Some objects do n ot have such attributes, therefor attribute exception is needed.
+    try:
+        brand = container.div.div.a.img["title"]
+    except: AttributeError
+
+    #brand = brand_container.img["title"]
 
 
     title_container = container.findAll("a", {"class":"item-title"})
@@ -34,10 +38,10 @@ for container in containers:
     shipping = shipping_container[0].text.strip()
 
     print("brand: " + brand)
-    print("product_name: " +  product_name)
+    print("product_name: " + product_name)
     print("shipping: " + shipping)
 
-    f.write(brand + "," + product_name.replace(",", "|")+ "," + shipping + "\n")
+    f.write(brand + "," + product_name.replace(",", "|") + "," + shipping + "\n")
 
 f.close()
 
