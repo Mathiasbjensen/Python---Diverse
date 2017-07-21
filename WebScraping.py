@@ -1,5 +1,6 @@
 from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
+import re
 
 my_url = "https://www.newegg.com/Video-Cards-Video-Devices/Category/ID-38?Tpk=graphics%20card"
 
@@ -17,7 +18,8 @@ filename = "products.csv"
 # w for 'write'.
 f = open(filename, "w")
 
-headers = "brand, product_name, shipping\n"
+# Headers for csv file
+headers = "brand; product_name; shipping; price\n"
 
 f.write(headers)
 # grabs each product
@@ -28,8 +30,6 @@ for container in containers:
         brand = container.div.div.a.img["title"]
     except: AttributeError
 
-    #brand = brand_container.img["title"]
-
 
     title_container = container.findAll("a", {"class":"item-title"})
     product_name = title_container[0].text
@@ -37,11 +37,21 @@ for container in containers:
     shipping_container = container.findAll("li", {"class":"price-ship"})
     shipping = shipping_container[0].text.strip()
 
+    try:
+
+        price_container = container.findAll("li", {"class":"price-current"})
+        price = price_container[0].text.strip()
+        price_stripped = re.findall(r"[$]\S*",price)[0]
+
+    except: TypeError
+
+
     print("brand: " + brand)
     print("product_name: " + product_name)
     print("shipping: " + shipping)
+    print("price: " + price_stripped)
 
-    f.write(brand + "," + product_name.replace(",", "|") + "," + shipping + "\n")
+    f.write(brand + ";" + product_name.replace(",", "|") + ";" + shipping + ";" + price_stripped + "\n")
 
 f.close()
 
