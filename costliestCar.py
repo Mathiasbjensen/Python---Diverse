@@ -18,57 +18,39 @@ def costliestCar(maxPrice):
     stuffKeys = []
     stuffValues = []
 
-# For loops adding all the combinations of keys/values to the key and value list.
+    # For loops adding all the combinations of keys/values to the key and value list.
+
     # For Trim Level = Access:
     for L in range(1, len(extraOptionsKey1) + 1):
         for subset in itertools.combinations(extraOptionsKey1, L):
-            if 0 not in subset:
-                continue
-            else:
+            if 0 in subset:
                 stuffKeys.append(subset)
 
-    for L in range(1, len(extraOptionsValue1) + 1):
-        for subset in itertools.combinations(extraOptionsValue1, L):
-            if 'Access' not in subset:
-                continue
-            else:
-                stuffValues.append(subset)
+        for subset1 in itertools.combinations(extraOptionsValue1, L):
+            if 'Access' in subset1:
+                stuffValues.append(subset1)
 
     # For Trim Level = Comfort:
-
     for L in range(1, len(extraOptionsKey2) + 1):
         for subset in itertools.combinations(extraOptionsKey2, L):
-            # if subset not in stuffKeys:
-            if 22000 not in subset:
-                continue
-            else:
+            if 22000 in subset:
                 stuffKeys.append(subset)
 
-    for L in range(1, len(extraOptionsValue2) + 1):
-        for subset in itertools.combinations(extraOptionsValue2, L):
-            # if subset not in stuffValues:
-            if 'Comfort' not in subset:
-                continue
-            else:
-                stuffValues.append(subset)
+        for subset1 in itertools.combinations(extraOptionsValue2, L):
+            if 'Comfort' in subset1:
+                stuffValues.append(subset1)
 
     # For Trim Level = Sport:
-
     for L in range(1, len(extraOptionsKey3) + 1):
         for subset in itertools.combinations(extraOptionsKey3, L):
-            # if subset not in stuffKeys:
-            if 44000 not in subset:
-                continue
-            else:
+            if 44000 in subset:
                 stuffKeys.append(subset)
 
-    for L in range(1, len(extraOptionsValue3) + 1):
-        for subset in itertools.combinations(extraOptionsValue3, L):
-            # if subset not in stuffValues:
-            if 'Sport' not in subset:
-                continue
-            else:
-                stuffValues.append(subset)
+        for subset1 in itertools.combinations(extraOptionsValue3, L):
+            if 'Sport' in subset1:
+                stuffValues.append(subset1)
+
+    #print(*stuffValues, sep='\n')
 
     # Adding all the combinations to a dictionary, with price as keys and strings as the values of the dict.
 
@@ -79,17 +61,20 @@ def costliestCar(maxPrice):
     # Sorting the dictionary by keys, so lowest price will be the first key index.
     od = collections.OrderedDict(sorted(dict.items()))
 
+    dictList = list(od.keys())
+    highestPossiblePrice = dictList[-1]
 
+    if maxPrice > highestPossiblePrice + basePrice:
+        return od[dictList[-1]]
 
     # whacky forloop since using while loop through dictionary keys was weird.
     for key in od.keys():
         if key > maxPrice - basePrice:
-            carSpecification = od[temp]
-            return carSpecification
+            return od[temp]
 
         else:
             # This temp value is just to be able to get the previous key value.
             temp = key
 
 
-print(costliestCar(205000))
+print(costliestCar(170500))

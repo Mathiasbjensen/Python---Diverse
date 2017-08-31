@@ -169,10 +169,10 @@ maxPrice = 170500
 
 #whacky forloop since using while loop through dictionary keys was weird.
 for key in od.keys():
-    print(key)
+    #print(key)
     if key > maxPrice-159000:
-        print(key)
-        print(od[temp])
+        #print(key)
+        #print(od[temp])
         break
 
     else:
@@ -185,9 +185,9 @@ for key in od.keys():
 
 
 # print("skod")
-# print(len(stuffValues))
+print(len(stuffValues))
 # print(len(stuffKeys))
-# print(*stuffKeys, sep='\n')
+print(*stuffKeys, sep='\n')
 
 # print(stuffKeys[13])
 # print("This will hopefully be the sum, lol:")
@@ -200,8 +200,8 @@ for key in od.keys():
 # print("Here comes the dictionary!")
 # print(dict[28000])
 
-#for i in dict:
-    #print("Key: %s, value: %s" % (i, dict[i]))
+for i in dict:
+    print("Key: %s, value: %s" % (i, dict[i]))
 
 
 # -----------------------------------------
