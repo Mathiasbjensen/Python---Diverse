@@ -70,7 +70,11 @@ def costliestCar(maxPrice):
     # whacky forloop since using while loop through dictionary keys was weird.
     for key in od.keys():
         if key > maxPrice - basePrice:
-            return od[temp]
+            skod = str(od[temp])
+            skod2 = skod.replace("(", "")
+            skod3 = skod2.replace(")", "")
+            skod4 = skod3.replace("'", "")
+            return skod4
 
         else:
             # This temp value is just to be able to get the previous key value.
