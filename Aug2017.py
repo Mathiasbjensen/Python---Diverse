@@ -66,8 +66,8 @@ import collections
 
 # ---------------------------------------------
 
-# # Assignment D - Rotation and scaling
-#
+# Assignment D - Rotation and scaling
+
 # def rotateScale(coordinates, center, theta, scale):
 #
 #     centerab = np.array([coordinates[0, -1] - center[0], coordinates[1, -1] - center[1]])
